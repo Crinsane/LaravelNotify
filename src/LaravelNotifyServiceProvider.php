@@ -16,18 +16,18 @@ class LaravelNotifyServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/notifications.php' => config_path('notifications.php'),
-        ]);
+        ], 'config');
 
-        $this->app['view']->getEngineResolver()->resolve('blade')->getCompiler()->directive('notifications',
-            function () {
+        $this->publishes([
+            __DIR__.'/../resources/css' => public_path('css'),
+            __DIR__.'/../resources/js' => public_path('js'),
+        ], 'assets');
+
+        $this->getBladeCompiler()
+            ->directive('notifications', function () {
                 $expression = 'Gloudemans\Notify\Notifications\Notification';
 
-                return "<?php echo app('{$expression}')->render(); ?><script>
-        var socket = io('http://192.168.10.10:6001');
-        socket.on('notifications:Gloudemans\\Notify\\Broadcasting\\BroadcastNotification', function(message){
-            console.log(message);
-        });
-    </script>";
+                return "<?php echo app('{$expression}')->render(); ?>";
             });
     }
 
@@ -62,5 +62,18 @@ class LaravelNotifyServiceProvider extends ServiceProvider
             'Gloudemans\Notify\Notifications\NotificationRenderer',
             "Gloudemans\\Notify\\Notifications\\Renderers\\{$renderer}Renderer"
         );
+    }
+
+    /**
+     * Get the blade compiler
+     *
+     * @return \Illuminate\View\Compilers\CompilerInterface
+     */
+    private function getBladeCompiler()
+    {
+        return $this->app['view']
+            ->getEngineResolver()
+            ->resolve('blade')
+            ->getCompiler();
     }
 }
