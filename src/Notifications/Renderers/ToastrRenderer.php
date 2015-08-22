@@ -31,7 +31,7 @@ class ToastrRenderer implements NotificationRenderer
                 $toasts .= ", '{$title}'";
             }
 
-            $toasts .= ")\n";
+            $toasts .= ");\n";
         }
 
         return $this->renderOutput($toasts);
@@ -76,7 +76,6 @@ TAG;
         "hideMethod": "fadeOut"
     };
 TAG;
-
     }
 
 }

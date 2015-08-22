@@ -25,12 +25,12 @@ class BootboxRenderer implements NotificationRenderer
 
             $bootboxes = <<<TAG
     bootbox.dialog({
-        message: "{$message}",
-        title: "{$title}",
+        message: '{$message}',
+        title: '{$title}',
         buttons: {
             success: {
-                label: "OK",
-                className: "btn-{$type}"
+                label: 'OK',
+                className: 'btn-{$type}'
             }
         }
     });
@@ -51,7 +51,7 @@ TAG;
     {
         $output = <<<TAG
 <script>
-    $bootboxes
+$bootboxes
 </script>
 TAG;
 

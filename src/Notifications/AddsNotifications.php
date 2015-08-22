@@ -12,7 +12,7 @@ trait AddsNotifications
      */
     public function notify()
     {
-        return app('Bloggermedia\Notifications\Notification');
+        return app('Gloudemans\Notify\Notifications\Notification');
     }
 
     /**

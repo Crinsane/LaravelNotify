@@ -25,11 +25,13 @@ class SweetAlertRenderer implements NotificationRenderer
             $type    = $notification['type'];
             $title   = is_null($notification['title']) ? ucfirst($type) : $this->escapeTitle($notification['title']);
 
-            $sweetAlerts .= "swal({\n";
-            $sweetAlerts .= "title: '{$title}',";
-            $sweetAlerts .= "text: '{$message}',\n";
-            $sweetAlerts .= "type: '{$type}',\n";
-            $sweetAlerts .= "});\n";
+            $sweetAlerts = <<<TAG
+    swal({
+        title: '{$title}',
+        text: '{$message}',
+        type: '{$type}'
+    });\n
+TAG;
         }
 
         return $this->renderOutput($sweetAlerts);
@@ -45,7 +47,7 @@ class SweetAlertRenderer implements NotificationRenderer
     {
         $output = <<<TAG
 <script>
-    $sweetAlerts
+$sweetAlerts
 </script>
 TAG;
 
