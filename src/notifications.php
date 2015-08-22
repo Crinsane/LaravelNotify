@@ -14,7 +14,7 @@ return [
         | Supported: "native", "toastr", "sweetalert", "bootbox"
         |
         */
-        'renderer' => 'toastr'
+        'renderer' => 'native'
 
     ]
 

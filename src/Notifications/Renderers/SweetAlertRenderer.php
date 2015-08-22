@@ -11,7 +11,7 @@ class SweetAlertRenderer implements NotificationRenderer
     use Escaping;
 
     /**
-     * Render the notifications as html
+     * Render the notifications as HTML/JavaScript
      *
      * @param  array $notifications
      * @return string

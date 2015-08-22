@@ -11,7 +11,7 @@ trait Escaping
      * @param  string $message
      * @return string
      */
-    private function escapeMessage($message)
+    public function escapeMessage($message)
     {
         $message = str_replace("'", "\\'", htmlentities($message));
 
@@ -24,7 +24,7 @@ trait Escaping
      * @param  string $title
      * @return string
      */
-    private function escapeTitle($title)
+    public function escapeTitle($title)
     {
         $title = str_replace("'", "\\'", htmlentities($title));
 

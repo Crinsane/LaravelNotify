@@ -20,11 +20,8 @@ class ToastrRendererTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_render_a_notification()
     {
-        $setup = $this->getToastrSetup();
-
         $expected = <<<TAG
 <script>
-    $setup
     toastr.success('Notification message', 'Notification title');
 
 </script>
@@ -44,11 +41,8 @@ TAG;
     /** @test */
     public function it_can_render_a_notification_without_a_title()
     {
-        $setup = $this->getToastrSetup();
-
         $expected = <<<TAG
 <script>
-    $setup
     toastr.success('Notification message');\n
 </script>
 TAG;
@@ -64,24 +58,4 @@ TAG;
         $this->assertEquals($expected, $rendered);
     }
 
-    private function getToastrSetup()
-    {
-        return <<<TAG
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "onclick": null,
-        "showDuration": "400",
-        "hideDuration": "1000",
-        "timeOut": "7000",
-        "extendedTimeOut": "1000",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
-TAG;
-    }
 }
